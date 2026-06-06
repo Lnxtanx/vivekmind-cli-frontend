@@ -436,7 +436,7 @@ function FeaturesSection() {
           <Reveal>
             <FeatureLabel n="C" label="Memory System" icon={Brain} />
             <h3 className="mt-4 font-display text-2xl sm:text-3xl font-semibold tracking-tight">
-              A second brain for your codebase.
+              Stop re-explaining your project. VivekMind remembers everything.
             </h3>
             <p className="mt-4 text-text-secondary leading-relaxed">
               VivekMind remembers your project context across sessions —
