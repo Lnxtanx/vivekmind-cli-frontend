@@ -626,8 +626,8 @@ function AdvancedGrid() {
       <div className="mx-auto max-w-[1280px] px-6">
         <SectionHeader
           eyebrow="Capabilities"
-          title="Built for power users."
-          desc="A deep toolbox of features developers actually need."
+          title="Go as deep as you want."
+          benefit="Subagents that work in parallel. Skills that auto-activate. MCP servers that add infinite tools. An arena that pits models against each other. VivekMind is deep — here's the rest."
         />
         <div className="mt-14 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {advFeatures.map(({ Icon, title, desc }, i) => (
