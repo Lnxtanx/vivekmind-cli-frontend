@@ -345,7 +345,7 @@ function FeaturesSection() {
           <Reveal>
             <FeatureLabel n="A" label="Built-in Tools" icon={Wrench} />
             <h3 className="mt-4 font-display text-2xl sm:text-3xl font-semibold tracking-tight">
-              Direct access to your codebase.
+              An AI agent that edits, searches, runs, and deploys.
             </h3>
             <p className="mt-4 text-text-secondary leading-relaxed">
               VivekMind gives the AI agent direct access to powerful tools for
