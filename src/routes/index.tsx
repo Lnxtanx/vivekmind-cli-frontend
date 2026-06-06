@@ -294,22 +294,29 @@ function TrustBar() {
 function SectionHeader({
   eyebrow,
   title,
+  benefit,
   desc,
 }: {
   eyebrow: string;
   title: string;
+  benefit?: string;
   desc?: string;
 }) {
   return (
     <Reveal>
-      <div className="max-w-3xl">
+      <div className="max-w-4xl">
         <div className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-red-primary">
           <span className="h-px w-6 bg-red-primary/60" />
           {eyebrow}
         </div>
-        <h2 className="mt-4 font-display text-3xl sm:text-5xl font-bold leading-[1.05] tracking-tight">
+        <h2 className="mt-5 font-display text-4xl sm:text-6xl lg:text-[64px] font-bold leading-[1.05] tracking-[-0.025em]">
           {title}
         </h2>
+        {benefit && (
+          <p className="mt-6 max-w-3xl font-display text-[22px] sm:text-[26px] lg:text-[28px] leading-[1.35] tracking-[-0.01em] text-text-primary">
+            {benefit}
+          </p>
+        )}
         {desc && (
           <p className="mt-5 text-[16px] leading-relaxed text-text-secondary">
             {desc}
