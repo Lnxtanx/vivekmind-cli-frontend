@@ -7,6 +7,7 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
+import { ParticleField } from "@/components/site/ParticleField";
 
 import appCss from "../styles.css?url";
 
@@ -113,7 +114,10 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
+      <ParticleField />
+      <div className="relative z-10">
+        <Outlet />
+      </div>
     </QueryClientProvider>
   );
 }

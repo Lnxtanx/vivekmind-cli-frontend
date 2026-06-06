@@ -173,7 +173,7 @@ function Hero() {
             </Reveal>
 
             <Reveal delay={0.05}>
-              <h1 className="mt-6 font-display text-[44px] sm:text-[60px] lg:text-[78px] font-bold leading-[0.98] tracking-tight">
+              <h1 className="mt-6 font-display text-[44px] sm:text-[72px] lg:text-[104px] xl:text-[120px] font-bold leading-[1.02] sm:leading-[0.98] tracking-[-0.03em]">
                 Code at the
                 <br />
                 speed of <span className="text-red-primary">thought.</span>
@@ -181,11 +181,15 @@ function Hero() {
             </Reveal>
 
             <Reveal delay={0.1}>
-              <p className="mt-6 max-w-xl text-[17px] leading-relaxed text-text-secondary">
-                VivekMind is an open-source terminal AI agent with 20+ provider
-                support, 40+ built-in commands, and deep AWS Bedrock integration.
-                Fork of Qwen Code by Google &amp; Alibaba Cloud. Bring your own
-                keys — no vendor lock-in.
+              <p className="mt-8 max-w-2xl font-display text-[22px] sm:text-[26px] lg:text-[30px] leading-[1.3] tracking-[-0.01em] text-text-primary">
+                Stop switching between your terminal, browser, and AI chatbot.
+                VivekMind brings a powerful AI agent directly into your shell —
+                with <span className="text-red-glow">20+ model providers</span>,
+                zero vendor lock-in, and full AWS Bedrock support.
+              </p>
+              <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-text-secondary">
+                Your keys. Your models. Your workflow. Open-source under Apache 2.0,
+                forked from Qwen Code by Google &amp; Alibaba Cloud.
               </p>
             </Reveal>
 
@@ -290,22 +294,29 @@ function TrustBar() {
 function SectionHeader({
   eyebrow,
   title,
+  benefit,
   desc,
 }: {
   eyebrow: string;
   title: string;
+  benefit?: string;
   desc?: string;
 }) {
   return (
     <Reveal>
-      <div className="max-w-3xl">
+      <div className="max-w-4xl">
         <div className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-red-primary">
           <span className="h-px w-6 bg-red-primary/60" />
           {eyebrow}
         </div>
-        <h2 className="mt-4 font-display text-3xl sm:text-5xl font-bold leading-[1.05] tracking-tight">
+        <h2 className="mt-5 font-display text-4xl sm:text-6xl lg:text-[64px] font-bold leading-[1.05] tracking-[-0.025em]">
           {title}
         </h2>
+        {benefit && (
+          <p className="mt-6 max-w-3xl font-display text-[22px] sm:text-[26px] lg:text-[28px] leading-[1.35] tracking-[-0.01em] text-text-primary">
+            {benefit}
+          </p>
+        )}
         {desc && (
           <p className="mt-5 text-[16px] leading-relaxed text-text-secondary">
             {desc}
@@ -324,8 +335,9 @@ function FeaturesSection() {
       <div className="relative mx-auto max-w-[1280px] px-6">
         <SectionHeader
           eyebrow="Features"
-          title="Everything you need. Nothing you don't."
-          desc="VivekMind is a real engineering tool, not a chat wrapper. Direct file access, shell control, memory across sessions, and a command-driven workflow built for terminals."
+          title="An AI agent that ships code — not just talk."
+          benefit="VivekMind reaches into your files, runs your shell, remembers your project, and lands real changes. The rest of the AI tools are just chat windows."
+          desc="Direct file access, shell control, memory across sessions, and a command-driven workflow built for terminals."
         />
 
         {/* A - Built-in Tools */}
@@ -333,7 +345,7 @@ function FeaturesSection() {
           <Reveal>
             <FeatureLabel n="A" label="Built-in Tools" icon={Wrench} />
             <h3 className="mt-4 font-display text-2xl sm:text-3xl font-semibold tracking-tight">
-              Direct access to your codebase.
+              An AI agent that edits, searches, runs, and deploys.
             </h3>
             <p className="mt-4 text-text-secondary leading-relaxed">
               VivekMind gives the AI agent direct access to powerful tools for
@@ -385,7 +397,7 @@ function FeaturesSection() {
           <Reveal delay={0.05} className="lg:order-2">
             <FeatureLabel n="B" label="40+ Slash Commands" icon={TerminalSquare} />
             <h3 className="mt-4 font-display text-2xl sm:text-3xl font-semibold tracking-tight">
-              Everything is a slash command away.
+              Everything is a slash command away. No mouse, no menus, no friction.
             </h3>
             <p className="mt-4 text-text-secondary leading-relaxed">
               Over 40 built-in commands for session control, configuration, and
@@ -424,7 +436,7 @@ function FeaturesSection() {
           <Reveal>
             <FeatureLabel n="C" label="Memory System" icon={Brain} />
             <h3 className="mt-4 font-display text-2xl sm:text-3xl font-semibold tracking-tight">
-              A second brain for your codebase.
+              Stop re-explaining your project. VivekMind remembers everything.
             </h3>
             <p className="mt-4 text-text-secondary leading-relaxed">
               VivekMind remembers your project context across sessions —
@@ -507,8 +519,8 @@ function ProvidersSection() {
       <div className="mx-auto max-w-[1280px] px-6">
         <SectionHeader
           eyebrow="Providers"
-          title="One CLI. Twenty-plus AI providers."
-          desc="Point VivekMind at any model from any provider. No subscriptions, no lock-in — just bring your API key and go."
+          title="One CLI. Every AI model. No subscription."
+          benefit="Point VivekMind at any model from any provider. No monthly fees, no usage caps written by someone else — just your API keys and the models you actually want."
         />
         <Reveal delay={0.1}>
           <div className="mt-12 flex flex-wrap gap-2">
@@ -563,8 +575,8 @@ function ChannelsSection() {
       <div className="relative mx-auto max-w-[1280px] px-6">
         <SectionHeader
           eyebrow="Channels"
-          title="Your AI agent. Everywhere you chat."
-          desc="Connect VivekMind to messaging platforms as a bot. Run your coding agent from Telegram, WeChat, or DingTalk. Configure once, deploy as a background process."
+          title="Your agent. Wherever you chat."
+          benefit="Run VivekMind from Telegram, WeChat, or DingTalk — same agent, same project memory, just a different keyboard. Configure once, deploy as a background process."
         />
         <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {channels.map((c, i) => (
@@ -614,8 +626,8 @@ function AdvancedGrid() {
       <div className="mx-auto max-w-[1280px] px-6">
         <SectionHeader
           eyebrow="Capabilities"
-          title="Built for power users."
-          desc="A deep toolbox of features developers actually need."
+          title="Go as deep as you want."
+          benefit="Subagents that work in parallel. Skills that auto-activate. MCP servers that add infinite tools. An arena that pits models against each other. VivekMind is deep — here's the rest."
         />
         <div className="mt-14 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {advFeatures.map(({ Icon, title, desc }, i) => (
@@ -843,7 +855,8 @@ function ComparisonSection() {
       <div className="mx-auto max-w-[1280px] px-6">
         <SectionHeader
           eyebrow="Compare"
-          title="VivekMind vs. other AI coding agents."
+          title="Why we built VivekMind."
+          benefit="Nothing else gave us open-source freedom, multi-provider flexibility, and terminal-native speed — all in one tool. So we built it."
         />
         <Reveal delay={0.1}>
           <div className="mt-12 overflow-x-auto rounded-lg border border-white/[0.08]">

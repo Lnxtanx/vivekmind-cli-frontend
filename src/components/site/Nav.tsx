@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { Github, Menu, X, Terminal } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 
-const links = [
-  { label: "Docs", href: "#features" },
-  { label: "Features", href: "#features" },
-  { label: "Providers", href: "#providers" },
-  { label: "Channels", href: "#channels" },
+const links: { label: string; href: string; route?: boolean }[] = [
+  { label: "Docs", href: "/docs", route: true },
+  { label: "Features", href: "/#features" },
+  { label: "Providers", href: "/#providers" },
+  { label: "Channels", href: "/#channels" },
   { label: "Blog", href: "#" },
 ];
 
@@ -29,25 +30,35 @@ export function Nav() {
       }`}
     >
       <div className="mx-auto flex h-16 max-w-[1280px] items-center justify-between px-6">
-        <a href="#" className="flex items-center gap-2.5 group">
+        <Link to="/" className="flex items-center gap-2.5 group">
           <div className="flex h-8 w-8 items-center justify-center rounded-md bg-red-primary/15 border border-red-primary/30 text-red-primary group-hover:red-glow-sm transition-shadow">
             <Terminal className="h-4 w-4" strokeWidth={2.5} />
           </div>
           <span className="font-display text-[15px] font-semibold tracking-tight">
             VivekMind <span className="text-red-primary">CLI</span>
           </span>
-        </a>
+        </Link>
 
         <nav className="hidden md:flex items-center gap-8">
-          {links.map((l) => (
-            <a
-              key={l.label}
-              href={l.href}
-              className="text-[13px] text-text-secondary hover:text-text-primary transition-colors"
-            >
-              {l.label}
-            </a>
-          ))}
+          {links.map((l) =>
+            l.route ? (
+              <Link
+                key={l.label}
+                to={l.href}
+                className="text-[13px] text-text-secondary hover:text-text-primary transition-colors"
+              >
+                {l.label}
+              </Link>
+            ) : (
+              <a
+                key={l.label}
+                href={l.href}
+                className="text-[13px] text-text-secondary hover:text-text-primary transition-colors"
+              >
+                {l.label}
+              </a>
+            )
+          )}
         </nav>
 
         <div className="hidden md:flex items-center gap-3">
