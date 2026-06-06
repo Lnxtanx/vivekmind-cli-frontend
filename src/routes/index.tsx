@@ -133,7 +133,7 @@ const comparison = [
 
 function Landing() {
   return (
-    <div className="relative min-h-screen bg-bg-primary text-text-primary">
+    <div className="relative min-h-screen text-text-primary">
       <Nav />
       <Hero />
       <TrustBar />
