@@ -93,7 +93,7 @@ const groups: Group[] = [
 
 function DocsPage() {
   return (
-    <div className="relative min-h-screen bg-bg-primary text-text-primary">
+    <div className="relative min-h-screen text-text-primary">
       <Nav />
       <div className="mx-auto max-w-[1280px] px-6 pt-28 pb-24">
         <Breadcrumbs />
