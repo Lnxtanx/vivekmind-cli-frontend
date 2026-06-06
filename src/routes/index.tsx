@@ -519,8 +519,8 @@ function ProvidersSection() {
       <div className="mx-auto max-w-[1280px] px-6">
         <SectionHeader
           eyebrow="Providers"
-          title="One CLI. Twenty-plus AI providers."
-          desc="Point VivekMind at any model from any provider. No subscriptions, no lock-in — just bring your API key and go."
+          title="One CLI. Every AI model. No subscription."
+          benefit="Point VivekMind at any model from any provider. No monthly fees, no usage caps written by someone else — just your API keys and the models you actually want."
         />
         <Reveal delay={0.1}>
           <div className="mt-12 flex flex-wrap gap-2">
