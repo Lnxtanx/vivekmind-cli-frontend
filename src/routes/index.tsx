@@ -575,8 +575,8 @@ function ChannelsSection() {
       <div className="relative mx-auto max-w-[1280px] px-6">
         <SectionHeader
           eyebrow="Channels"
-          title="Your AI agent. Everywhere you chat."
-          desc="Connect VivekMind to messaging platforms as a bot. Run your coding agent from Telegram, WeChat, or DingTalk. Configure once, deploy as a background process."
+          title="Your agent. Wherever you chat."
+          benefit="Run VivekMind from Telegram, WeChat, or DingTalk — same agent, same project memory, just a different keyboard. Configure once, deploy as a background process."
         />
         <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {channels.map((c, i) => (
