@@ -335,8 +335,9 @@ function FeaturesSection() {
       <div className="relative mx-auto max-w-[1280px] px-6">
         <SectionHeader
           eyebrow="Features"
-          title="Everything you need. Nothing you don't."
-          desc="VivekMind is a real engineering tool, not a chat wrapper. Direct file access, shell control, memory across sessions, and a command-driven workflow built for terminals."
+          title="An AI agent that ships code — not just talk."
+          benefit="VivekMind reaches into your files, runs your shell, remembers your project, and lands real changes. The rest of the AI tools are just chat windows."
+          desc="Direct file access, shell control, memory across sessions, and a command-driven workflow built for terminals."
         />
 
         {/* A - Built-in Tools */}
