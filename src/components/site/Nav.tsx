@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { Github, Menu, X, Terminal } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 
-const links = [
-  { label: "Docs", href: "#features" },
-  { label: "Features", href: "#features" },
-  { label: "Providers", href: "#providers" },
-  { label: "Channels", href: "#channels" },
+const links: { label: string; href: string; route?: boolean }[] = [
+  { label: "Docs", href: "/docs", route: true },
+  { label: "Features", href: "/#features" },
+  { label: "Providers", href: "/#providers" },
+  { label: "Channels", href: "/#channels" },
   { label: "Blog", href: "#" },
 ];
 
