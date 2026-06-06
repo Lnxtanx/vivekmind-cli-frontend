@@ -671,6 +671,3 @@ function PrevNext() {
     </div>
   );
 }
-
-// Silence unused import warning in dev — the icon set is used above.
-void useEffect;
