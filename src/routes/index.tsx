@@ -173,7 +173,7 @@ function Hero() {
             </Reveal>
 
             <Reveal delay={0.05}>
-              <h1 className="mt-6 font-display text-[44px] sm:text-[60px] lg:text-[78px] font-bold leading-[0.98] tracking-tight">
+              <h1 className="mt-6 font-display text-[44px] sm:text-[72px] lg:text-[104px] xl:text-[120px] font-bold leading-[1.02] sm:leading-[0.98] tracking-[-0.03em]">
                 Code at the
                 <br />
                 speed of <span className="text-red-primary">thought.</span>
@@ -181,11 +181,15 @@ function Hero() {
             </Reveal>
 
             <Reveal delay={0.1}>
-              <p className="mt-6 max-w-xl text-[17px] leading-relaxed text-text-secondary">
-                VivekMind is an open-source terminal AI agent with 20+ provider
-                support, 40+ built-in commands, and deep AWS Bedrock integration.
-                Fork of Qwen Code by Google &amp; Alibaba Cloud. Bring your own
-                keys — no vendor lock-in.
+              <p className="mt-8 max-w-2xl font-display text-[22px] sm:text-[26px] lg:text-[30px] leading-[1.3] tracking-[-0.01em] text-text-primary">
+                Stop switching between your terminal, browser, and AI chatbot.
+                VivekMind brings a powerful AI agent directly into your shell —
+                with <span className="text-red-glow">20+ model providers</span>,
+                zero vendor lock-in, and full AWS Bedrock support.
+              </p>
+              <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-text-secondary">
+                Your keys. Your models. Your workflow. Open-source under Apache 2.0,
+                forked from Qwen Code by Google &amp; Alibaba Cloud.
               </p>
             </Reveal>
 
