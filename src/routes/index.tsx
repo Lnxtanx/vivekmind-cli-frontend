@@ -855,7 +855,8 @@ function ComparisonSection() {
       <div className="mx-auto max-w-[1280px] px-6">
         <SectionHeader
           eyebrow="Compare"
-          title="VivekMind vs. other AI coding agents."
+          title="Why we built VivekMind."
+          benefit="Nothing else gave us open-source freedom, multi-provider flexibility, and terminal-native speed — all in one tool. So we built it."
         />
         <Reveal delay={0.1}>
           <div className="mt-12 overflow-x-auto rounded-lg border border-white/[0.08]">
