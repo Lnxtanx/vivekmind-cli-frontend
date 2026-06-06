@@ -397,7 +397,7 @@ function FeaturesSection() {
           <Reveal delay={0.05} className="lg:order-2">
             <FeatureLabel n="B" label="40+ Slash Commands" icon={TerminalSquare} />
             <h3 className="mt-4 font-display text-2xl sm:text-3xl font-semibold tracking-tight">
-              Everything is a slash command away.
+              Everything is a slash command away. No mouse, no menus, no friction.
             </h3>
             <p className="mt-4 text-text-secondary leading-relaxed">
               Over 40 built-in commands for session control, configuration, and
