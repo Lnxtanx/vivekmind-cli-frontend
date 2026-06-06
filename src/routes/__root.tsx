@@ -7,6 +7,7 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
+import { ParticleField } from "@/components/site/ParticleField";
 
 import appCss from "../styles.css?url";
 
