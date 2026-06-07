@@ -7,6 +7,8 @@ import {
   Lightbulb,
   Menu,
   X,
+  Copy,
+  Check,
 } from "lucide-react";
 import { Nav } from "@/components/site/Nav";
 
@@ -16,14 +18,7 @@ export const Route = createFileRoute("/docs")({
       { title: "Docs — VivekMind CLI" },
       {
         name: "description",
-        content:
-          "Install, configure, and master VivekMind CLI. Guides for Mac, Windows, Linux, providers, memory, MCP, channels and more.",
-      },
-      { property: "og:title", content: "VivekMind CLI — Documentation" },
-      {
-        property: "og:description",
-        content:
-          "Get VivekMind running in 60 seconds. Full installation, configuration, and feature guides.",
+        content: "Install, configure, and master VivekMind CLI.",
       },
     ],
   }),
@@ -37,9 +32,7 @@ const groups: Group[] = [
   {
     label: "Getting Started",
     items: [
-      { id: "install-mac", label: "Installation (Mac)" },
-      { id: "install-windows", label: "Installation (Windows)" },
-      { id: "install-linux", label: "Installation (Linux)" },
+      { id: "install", label: "Installation" },
       { id: "quick-start", label: "Quick Start" },
     ],
   },
@@ -58,7 +51,6 @@ const groups: Group[] = [
       { id: "anthropic", label: "Anthropic" },
       { id: "openai", label: "OpenAI" },
       { id: "gemini", label: "Gemini" },
-      { id: "multi-provider", label: "Multi-Provider" },
     ],
   },
   {
@@ -72,20 +64,10 @@ const groups: Group[] = [
     ],
   },
   {
-    label: "Channels",
-    items: [
-      { id: "telegram", label: "Telegram" },
-      { id: "wechat", label: "WeChat" },
-      { id: "dingtalk", label: "DingTalk" },
-    ],
-  },
-  {
     label: "Advanced",
     items: [
       { id: "headless", label: "Headless / CI" },
       { id: "arena", label: "Arena" },
-      { id: "hooks", label: "Hooks" },
-      { id: "cron", label: "Cron" },
       { id: "sandbox", label: "Sandbox" },
     ],
   },
@@ -93,17 +75,15 @@ const groups: Group[] = [
 
 function DocsPage() {
   return (
-    <div className="relative min-h-screen text-text-primary">
+    <div className="relative min-h-screen bg-white text-neutral-900">
       <Nav />
-      <div className="mx-auto max-w-[1280px] px-6 pt-28 pb-24">
+      <div className="mx-auto max-w-5xl px-6 pt-24 pb-20">
         <Breadcrumbs />
-        <div className="mt-6 grid gap-10 lg:grid-cols-[240px_1fr]">
+        <div className="mt-6 grid gap-10 lg:grid-cols-[200px_1fr]">
           <Sidebar />
           <main className="min-w-0">
             <Header />
-            <InstallMac />
-            <InstallWindows />
-            <InstallLinux />
+            <Install />
             <QuickStart />
             <SettingsFile />
             <EnvVars />
@@ -112,21 +92,14 @@ function DocsPage() {
             <Anthropic />
             <OpenAI />
             <Gemini />
-            <MultiProvider />
             <Memory />
             <Subagents />
             <Skills />
             <MCP />
             <Extensions />
-            <Telegram />
-            <WeChat />
-            <DingTalk />
             <Headless />
             <Arena />
-            <Hooks />
-            <Cron />
             <Sandbox />
-            <PrevNext />
           </main>
         </div>
       </div>
@@ -134,14 +107,14 @@ function DocsPage() {
   );
 }
 
-/* ---------- LAYOUT ---------- */
+/* ── layout ── */
 
 function Breadcrumbs() {
   return (
-    <div className="flex items-center gap-2 text-[12px] font-mono text-text-tertiary">
-      <a href="/" className="hover:text-text-primary">Home</a>
+    <div className="flex items-center gap-2 text-[12px] text-neutral-400">
+      <a href="/" className="hover:text-neutral-700">Home</a>
       <ChevronRight className="h-3 w-3" />
-      <span className="text-text-secondary">Docs</span>
+      <span className="text-neutral-600">Docs</span>
     </div>
   );
 }
@@ -153,19 +126,18 @@ function Sidebar() {
       <div className="lg:hidden">
         <button
           onClick={() => setOpen((v) => !v)}
-          className="inline-flex items-center gap-2 rounded-md border border-white/[0.08] bg-bg-secondary px-3 py-2 text-[13px] text-text-secondary"
+          className="inline-flex items-center gap-2 rounded-md border border-neutral-200 px-3 py-2 text-[13px] text-neutral-600"
         >
           {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
           Browse docs
         </button>
         {open && (
-          <div className="mt-3 rounded-lg border border-white/[0.08] bg-bg-secondary p-4">
+          <div className="mt-3 rounded-lg border border-neutral-200 bg-white p-4">
             <SidebarList onClick={() => setOpen(false)} />
           </div>
         )}
       </div>
-
-      <aside className="hidden lg:block sticky top-24 self-start max-h-[calc(100vh-7rem)] overflow-y-auto pr-2">
+      <aside className="hidden lg:block sticky top-20 self-start max-h-[calc(100vh-6rem)] overflow-y-auto">
         <SidebarList />
       </aside>
     </>
@@ -174,19 +146,19 @@ function Sidebar() {
 
 function SidebarList({ onClick }: { onClick?: () => void }) {
   return (
-    <nav className="space-y-6">
+    <nav className="space-y-5">
       {groups.map((g) => (
         <div key={g.label}>
-          <div className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-text-tertiary">
+          <div className="text-[10px] font-semibold uppercase tracking-[0.15em] text-neutral-400">
             {g.label}
           </div>
-          <ul className="mt-3 space-y-1.5 border-l border-white/[0.06] pl-3">
+          <ul className="mt-2 space-y-1 border-l border-neutral-200 pl-3">
             {g.items.map((it) => (
               <li key={it.id}>
                 <a
                   href={`#${it.id}`}
                   onClick={onClick}
-                  className="block text-[13px] text-text-secondary hover:text-red-glow transition-colors"
+                  className="block text-[13px] text-neutral-500 hover:text-red-600 transition-colors"
                 >
                   {it.label}
                 </a>
@@ -201,162 +173,112 @@ function SidebarList({ onClick }: { onClick?: () => void }) {
 
 function Header() {
   return (
-    <div className="border-b border-white/[0.06] pb-8">
-      <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-red-primary">
-        Documentation · v0.15.6
-      </div>
-      <h1 className="mt-3 font-display text-5xl sm:text-6xl font-bold leading-[1.05] tracking-tight">
-        Get up and running.
+    <div className="border-b border-neutral-200 pb-6">
+      <p className="text-[12px] font-semibold uppercase tracking-[0.15em] text-red-600">
+        Documentation
+      </p>
+      <h1 className="mt-2 font-display text-[32px] sm:text-[40px] font-bold leading-[1.1] tracking-tight">
+        Get up and running
       </h1>
-      <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-text-secondary">
-        Install VivekMind on any machine, plug in your favorite AI provider, and
-        start coding from your terminal. Everything you need is on this page.
+      <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-neutral-500">
+        Install VivekMind, plug in your favorite AI provider, and start coding.
       </p>
     </div>
   );
 }
 
-/* ---------- PRIMITIVES ---------- */
+/* ── primitives ── */
 
 function H2({ id, children }: { id: string; children: React.ReactNode }) {
   return (
-    <h2
-      id={id}
-      className="scroll-mt-28 mt-20 font-display text-3xl sm:text-4xl font-bold tracking-tight"
-    >
+    <h2 id={id} className="scroll-mt-24 mt-16 font-display text-[24px] sm:text-[28px] font-bold tracking-tight">
       {children}
     </h2>
   );
 }
 function H3({ children }: { children: React.ReactNode }) {
-  return (
-    <h3 className="mt-8 font-display text-xl font-semibold tracking-tight">
-      {children}
-    </h3>
-  );
+  return <h3 className="mt-6 text-[16px] font-semibold">{children}</h3>;
 }
 function P({ children }: { children: React.ReactNode }) {
-  return (
-    <p className="mt-4 text-[15px] leading-relaxed text-text-secondary">
-      {children}
-    </p>
-  );
+  return <p className="mt-3 text-[14px] leading-relaxed text-neutral-600">{children}</p>;
 }
 function Code({ children }: { children: React.ReactNode }) {
   return (
-    <span className="font-mono text-[12.5px] rounded bg-red-primary/10 text-red-glow px-1.5 py-0.5">
+    <code className="font-mono text-[12px] rounded bg-neutral-100 text-red-600 px-1.5 py-0.5">
       {children}
-    </span>
+    </code>
   );
 }
+
 function Block({ lang, children }: { lang?: string; children: string }) {
+  const [copied, setCopied] = useState(false);
+  const onCopy = async () => {
+    await navigator.clipboard.writeText(children.trim());
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1500);
+  };
+
   return (
-    <div className="mt-5 overflow-hidden rounded-md border border-white/[0.08] bg-[#0d0d10]">
-      <div className="flex items-center justify-between border-t-2 border-red-primary/60 border-b border-white/[0.06] bg-bg-secondary px-4 py-1.5">
-        <span className="font-mono text-[10.5px] uppercase tracking-wider text-text-tertiary">
+    <div className="mt-4 overflow-hidden rounded-lg border border-neutral-200 bg-[#1a1b26]">
+      <div className="flex items-center justify-between border-b border-white/[0.06] bg-[#24253a] px-4 py-1.5">
+        <span className="font-mono text-[10px] uppercase tracking-wider text-white/25">
           {lang ?? "shell"}
         </span>
+        <button onClick={onCopy} className="p-1 rounded text-white/25 hover:text-white/60 transition" aria-label="Copy">
+          {copied ? <Check className="h-3.5 w-3.5 text-emerald-400" /> : <Copy className="h-3.5 w-3.5" />}
+        </button>
       </div>
-      <pre className="overflow-x-auto px-5 py-4 font-mono text-[12.5px] leading-[1.7] text-text-primary/90 whitespace-pre">
+      <pre className="overflow-x-auto px-4 py-3 font-mono text-[12.5px] leading-[1.6] text-white/85 whitespace-pre">
         {children}
       </pre>
     </div>
   );
 }
 
-function Callout({
-  kind,
-  title,
-  children,
-}: {
-  kind: "tip" | "note" | "warning";
-  title: string;
-  children: React.ReactNode;
-}) {
+function Callout({ kind, title, children }: { kind: "tip" | "note" | "warning"; title: string; children: React.ReactNode }) {
   const cfg = {
-    tip: { Icon: Lightbulb, color: "text-accent-green", border: "border-accent-green/60", bg: "bg-accent-green/[0.05]" },
-    note: { Icon: Info, color: "text-accent-blue", border: "border-accent-blue/60", bg: "bg-accent-blue/[0.05]" },
-    warning: { Icon: AlertTriangle, color: "text-accent-yellow", border: "border-accent-yellow/60", bg: "bg-accent-yellow/[0.05]" },
+    tip: { Icon: Lightbulb, color: "text-emerald-600", border: "border-l-emerald-500", bg: "bg-emerald-50" },
+    note: { Icon: Info, color: "text-blue-600", border: "border-l-blue-500", bg: "bg-blue-50" },
+    warning: { Icon: AlertTriangle, color: "text-amber-600", border: "border-l-amber-500", bg: "bg-amber-50" },
   }[kind];
   const { Icon } = cfg;
   return (
-    <div className={`mt-5 flex gap-3 rounded-md border border-white/[0.06] ${cfg.bg} border-l-2 ${cfg.border} p-4`}>
+    <div className={`mt-4 flex gap-3 rounded-lg ${cfg.bg} border-l-2 ${cfg.border} p-4`}>
       <Icon className={`h-4 w-4 mt-0.5 shrink-0 ${cfg.color}`} />
-      <div className="text-[13.5px]">
+      <div className="text-[13px]">
         <div className={`font-semibold ${cfg.color}`}>{title}</div>
-        <div className="mt-1 text-text-secondary leading-relaxed">{children}</div>
+        <div className="mt-1 text-neutral-600 leading-relaxed">{children}</div>
       </div>
     </div>
   );
 }
 
-/* ---------- SECTIONS ---------- */
+/* ── sections ── */
 
-function InstallMac() {
+function Install() {
   return (
     <section>
-      <H2 id="install-mac">Installation — macOS</H2>
-      <P>
-        VivekMind runs on Node.js 20+. The fastest way is with Homebrew.
-      </P>
-      <Block lang="bash">{`brew install node            # Node.js 20+
-npm install -g vivekmind
-vivekmind --version`}</Block>
-      <H3>Troubleshooting</H3>
-      <P>
-        If you see <Code>EACCES</Code> permission errors when installing globally,
-        switch npm to a user-owned prefix:
-      </P>
-      <Block lang="bash">{`mkdir ~/.npm-global
-npm config set prefix '~/.npm-global'
-echo 'export PATH=~/.npm-global/bin:$PATH' >> ~/.zshrc
-source ~/.zshrc`}</Block>
-      <Callout kind="note" title="Requirements">
-        macOS 12 (Monterey) or later. Apple Silicon and Intel both supported.
-      </Callout>
-    </section>
-  );
-}
+      <H2 id="install">Installation</H2>
+      <P>VivekMind CLI requires Node.js 20 or later.</P>
 
-function InstallWindows() {
-  return (
-    <section>
-      <H2 id="install-windows">Installation — Windows</H2>
-      <P>Install Node.js via winget (or download from nodejs.org), then install VivekMind globally.</P>
+      <H3>macOS</H3>
+      <Block lang="bash">{`brew install node
+npm install -g vivekmind`}</Block>
+
+      <H3>Windows</H3>
       <Block lang="powershell">{`winget install OpenJS.NodeJS.LTS
-npm install -g vivekmind
-vivekmind --version`}</Block>
-      <H3>Troubleshooting</H3>
-      <P>
-        If global install fails with a permission error, run PowerShell as
-        Administrator. Restart your terminal after install so the new <Code>PATH</Code>
-        is picked up.
-      </P>
-      <Callout kind="note" title="Requirements">
-        Windows 10 build 19041+ or Windows 11. PowerShell 7+ recommended.
-        WSL2 is fully supported — install via the Linux instructions inside WSL.
-      </Callout>
-    </section>
-  );
-}
+npm install -g vivekmind`}</Block>
 
-function InstallLinux() {
-  return (
-    <section>
-      <H2 id="install-linux">Installation — Linux</H2>
-      <H3>Ubuntu / Debian</H3>
+      <H3>Linux (Ubuntu/Debian)</H3>
       <Block lang="bash">{`curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
 sudo apt-get install -y nodejs
 npm install -g vivekmind`}</Block>
-      <H3>Fedora</H3>
-      <Block lang="bash">{`sudo dnf install -y nodejs npm
-npm install -g vivekmind`}</Block>
-      <H3>Arch</H3>
-      <Block lang="bash">{`sudo pacman -S nodejs npm
-npm install -g vivekmind`}</Block>
-      <Callout kind="tip" title="No sudo for global installs">
-        Configure a user prefix with <Code>npm config set prefix ~/.npm-global</Code>
-        and add <Code>~/.npm-global/bin</Code> to your <Code>PATH</Code>.
+
+      <H3>Verify</H3>
+      <Block lang="bash">{`vivekmind --version`}</Block>
+
+      <Callout kind="tip" title="Permission errors?">
+        Use <Code>npm config set prefix ~/.npm-global</Code> and add <Code>~/.npm-global/bin</Code> to your PATH.
       </Callout>
     </section>
   );
@@ -366,31 +288,18 @@ function QuickStart() {
   return (
     <section>
       <H2 id="quick-start">Quick Start</H2>
-      <P>Three steps. Sixty seconds.</P>
+
       <H3>1. Set a provider key</H3>
-      <Block lang="bash">{`# Anthropic
-export ANTHROPIC_API_KEY=sk-ant-...
-
-# AWS Bedrock
-export AWS_REGION=us-east-1
-export AWS_ACCESS_KEY_ID=...
-export AWS_SECRET_ACCESS_KEY=...
-
-# OpenAI
+      <Block lang="bash">{`export ANTHROPIC_API_KEY=sk-ant-...
+# or
 export OPENAI_API_KEY=sk-...
+# or
+export GEMINI_API_KEY=...`}</Block>
 
-# Gemini
-export GEMINI_API_KEY=...
+      <H3>2. Run</H3>
+      <Block lang="bash">{`vivekmind`}</Block>
 
-# Ollama (local, no key needed)
-export OLLAMA_HOST=http://localhost:11434`}</Block>
-      <H3>2. Run it</H3>
-      <Block lang="bash">{`vivekmind        # auto-creates ~/.vivekmind/settings.json on first run`}</Block>
-      <H3>3. Prompt naturally</H3>
-      <Block>{`> Refactor src/auth to use JWT with refresh tokens
-> Add tests for the cart reducer
-> Find every unused export in this repo`}</Block>
-      <H3>One-shot mode</H3>
+      <H3>3. One-shot mode</H3>
       <Block lang="bash">{`vivekmind -p "fix the failing test in src/api/auth.test.ts"`}</Block>
     </section>
   );
@@ -400,10 +309,7 @@ function SettingsFile() {
   return (
     <section>
       <H2 id="settings-file">Settings File</H2>
-      <P>
-        VivekMind reads <Code>~/.vivekmind/settings.json</Code> on startup. You can
-        edit it directly or via <Code>/settings</Code> inside the CLI.
-      </P>
+      <P>VivekMind reads <Code>~/.vivekmind/settings.json</Code> on startup.</P>
       <Block lang="json">{`{
   "provider": "bedrock",
   "model": "anthropic.claude-opus-4-v1:0",
@@ -419,15 +325,13 @@ function EnvVars() {
   return (
     <section>
       <H2 id="env-vars">Environment Variables</H2>
-      <P>Every provider is configured purely through env vars — no dashboards, no logins.</P>
       <Block lang="bash">{`ANTHROPIC_API_KEY=...
 OPENAI_API_KEY=...
 GEMINI_API_KEY=...
 AWS_REGION=us-east-1
 AWS_ACCESS_KEY_ID=...
 AWS_SECRET_ACCESS_KEY=...
-OLLAMA_HOST=http://localhost:11434
-VIVEKMIND_LOG_LEVEL=info`}</Block>
+OLLAMA_HOST=http://localhost:11434`}</Block>
     </section>
   );
 }
@@ -436,14 +340,11 @@ function ProjectConfig() {
   return (
     <section>
       <H2 id="project-config">Project Config</H2>
-      <P>
-        Drop a <Code>.vivekmind/</Code> folder at the root of any repo to override
-        global config, add custom slash commands, and seed project memory.
-      </P>
+      <P>Drop a <Code>.vivekmind/</Code> folder at the root of any repo.</P>
       <Block>{`.vivekmind/
-  config.json          # per-project overrides
-  commands/            # *.md files become /commands
-  memory/              # seeded project knowledge`}</Block>
+  config.json     # per-project overrides
+  commands/       # *.md → /commands
+  memory/         # seeded project knowledge`}</Block>
     </section>
   );
 }
@@ -452,14 +353,12 @@ function AWSBedrock() {
   return (
     <section>
       <H2 id="aws-bedrock">AWS Bedrock</H2>
-      <P>First-class Bedrock support — Claude, Llama, Mistral, and Titan models all work natively.</P>
       <Block lang="bash">{`export AWS_REGION=us-east-1
 export AWS_ACCESS_KEY_ID=...
 export AWS_SECRET_ACCESS_KEY=...
 vivekmind /model anthropic.claude-opus-4-v1:0`}</Block>
-      <Callout kind="tip" title="IAM least privilege">
-        VivekMind only needs <Code>bedrock:InvokeModel</Code> and
-        <Code> bedrock:InvokeModelWithResponseStream</Code>.
+      <Callout kind="tip" title="IAM">
+        Only needs <Code>bedrock:InvokeModel</Code> and <Code>bedrock:InvokeModelWithResponseStream</Code>.
       </Callout>
     </section>
   );
@@ -495,27 +394,11 @@ vivekmind /model gemini-2.5-pro`}</Block>
   );
 }
 
-function MultiProvider() {
-  return (
-    <section>
-      <H2 id="multi-provider">Multi-Provider</H2>
-      <P>
-        Switch providers mid-session with <Code>/model</Code>. Run multiple in parallel
-        with <Code>/arena</Code> to compare answers head-to-head.
-      </P>
-    </section>
-  );
-}
-
 function Memory() {
   return (
     <section>
       <H2 id="memory">Memory</H2>
-      <P>
-        VivekMind auto-extracts facts from every turn and consolidates them into
-        long-term project memory. Inspect with <Code>/memory</Code>, save with
-        <Code>/remember</Code>, drop with <Code>/forget</Code>.
-      </P>
+      <P>Auto-extracts facts from conversations and consolidates them. Use <Code>/memory</Code>, <Code>/remember</Code>, <Code>/forget</Code>.</P>
     </section>
   );
 }
@@ -525,7 +408,6 @@ function Subagents() {
     <section>
       <H2 id="subagents">Subagents</H2>
       <P>Spawn focused subagents to tackle parts of a task in parallel.</P>
-      <Block>{`> Use a subagent to write tests while you refactor the handler.`}</Block>
     </section>
   );
 }
@@ -534,10 +416,7 @@ function Skills() {
   return (
     <section>
       <H2 id="skills">Skills</H2>
-      <P>
-        Skills are reusable, conditionally-activated knowledge bundles. Drop a
-        <Code> SKILL.md</Code> + helpers into <Code>.vivekmind/skills/</Code>.
-      </P>
+      <P>Reusable, conditionally-activated knowledge bundles. Drop <Code>SKILL.md</Code> into <Code>.vivekmind/skills/</Code>.</P>
     </section>
   );
 }
@@ -546,11 +425,11 @@ function MCP() {
   return (
     <section>
       <H2 id="mcp">MCP</H2>
-      <P>Connect any Model Context Protocol server for unlimited extra tools.</P>
+      <P>Connect any Model Context Protocol server.</P>
       <Block lang="json">{`{
   "mcpServers": {
     "filesystem": { "command": "npx", "args": ["-y", "@mcp/filesystem"] },
-    "postgres":   { "command": "npx", "args": ["-y", "@mcp/postgres", "$DATABASE_URL"] }
+    "postgres": { "command": "npx", "args": ["-y", "@mcp/postgres", "$DATABASE_URL"] }
   }
 }`}</Block>
     </section>
@@ -561,35 +440,7 @@ function Extensions() {
   return (
     <section>
       <H2 id="extensions">Extensions</H2>
-      <P>Install community extensions from GitHub or npm via <Code>/extensions install</Code>.</P>
-    </section>
-  );
-}
-
-function Telegram() {
-  return (
-    <section>
-      <H2 id="telegram">Telegram</H2>
-      <Block lang="bash">{`vivekmind channel configure-telegram
-vivekmind channel start my-telegram`}</Block>
-    </section>
-  );
-}
-
-function WeChat() {
-  return (
-    <section>
-      <H2 id="wechat">WeChat</H2>
-      <P>Use the WeChat adapter to talk to VivekMind from Weixin.</P>
-    </section>
-  );
-}
-
-function DingTalk() {
-  return (
-    <section>
-      <H2 id="dingtalk">DingTalk</H2>
-      <P>Enterprise-ready DingTalk adapter, ideal for team workflows.</P>
+      <P>Install community extensions via <Code>/extensions install</Code>.</P>
     </section>
   );
 }
@@ -598,7 +449,7 @@ function Headless() {
   return (
     <section>
       <H2 id="headless">Headless / CI</H2>
-      <Block lang="bash">{`vivekmind -p "regenerate openapi.yaml from src/routes" --json`}</Block>
+      <Block lang="bash">{`vivekmind -p "regenerate openapi.yaml" --json`}</Block>
     </section>
   );
 }
@@ -607,27 +458,8 @@ function Arena() {
   return (
     <section>
       <H2 id="arena">Arena</H2>
-      <P>Pit two or more models against each other on the same prompt and compare.</P>
+      <P>Compare models head-to-head on the same prompt.</P>
       <Block>{`/arena claude-opus-4 vs gpt-5 vs gemini-2.5-pro`}</Block>
-    </section>
-  );
-}
-
-function Hooks() {
-  return (
-    <section>
-      <H2 id="hooks">Hooks</H2>
-      <P>Run shell commands or HTTP webhooks before/after any tool execution.</P>
-    </section>
-  );
-}
-
-function Cron() {
-  return (
-    <section>
-      <H2 id="cron">Cron</H2>
-      <P>Schedule recurring tasks directly from the CLI.</P>
-      <Block>{`/cron "0 9 * * *" "summarize yesterday's commits"`}</Block>
     </section>
   );
 }
@@ -638,36 +470,5 @@ function Sandbox() {
       <H2 id="sandbox">Sandbox</H2>
       <P>Run shell tools inside Docker or Podman for safer execution.</P>
     </section>
-  );
-}
-
-function PrevNext() {
-  return (
-    <div className="mt-24 grid gap-3 sm:grid-cols-2 border-t border-white/[0.06] pt-8">
-      <a
-        href="#install-mac"
-        className="group rounded-lg border border-white/[0.08] bg-bg-secondary p-5 hover:border-red-primary/40 transition"
-      >
-        <div className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-text-tertiary">
-          ← Back to top
-        </div>
-        <div className="mt-1 font-display text-[15px] font-semibold">
-          Installation
-        </div>
-      </a>
-      <a
-        href="https://github.com/Lnxtanx/vivekmind-cli"
-        target="_blank"
-        rel="noreferrer"
-        className="group rounded-lg border border-white/[0.08] bg-bg-secondary p-5 text-right hover:border-red-primary/40 transition"
-      >
-        <div className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-text-tertiary">
-          Next →
-        </div>
-        <div className="mt-1 font-display text-[15px] font-semibold">
-          Read the source on GitHub
-        </div>
-      </a>
-    </div>
   );
 }

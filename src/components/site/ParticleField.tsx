@@ -34,7 +34,7 @@ export function ParticleField() {
     const RADIUS = 150;
 
     const isMobile = window.innerWidth < 768;
-    const COUNT = isMobile ? 240 : 650;
+    const COUNT = isMobile ? 120 : 350;
 
     const resize = () => {
       width = window.innerWidth;
@@ -76,8 +76,8 @@ export function ParticleField() {
           hy: y,
           vx: 0,
           vy: 0,
-          size: bright ? 1.6 + Math.random() * 0.6 : 0.8 + Math.random() * 1.0,
-          alpha: 0.18 + Math.random() * 0.42,
+          size: bright ? 1.2 + Math.random() * 0.4 : 0.6 + Math.random() * 0.8,
+          alpha: 0.06 + Math.random() * 0.14,
           bright,
         });
       }
@@ -145,12 +145,12 @@ export function ParticleField() {
         const a = Math.min(0.95, p.alpha + disp * 0.5);
 
         if (p.bright) {
-          ctx.shadowBlur = 3;
-          ctx.shadowColor = "rgba(252, 92, 92, 0.6)";
-          ctx.fillStyle = `rgba(252, 92, 92, ${a})`;
+          ctx.shadowBlur = 2;
+          ctx.shadowColor = "rgba(220, 38, 38, 0.3)";
+          ctx.fillStyle = `rgba(220, 38, 38, ${a})`;
         } else {
           ctx.shadowBlur = 0;
-          ctx.fillStyle = `rgba(229, 62, 62, ${a})`;
+          ctx.fillStyle = `rgba(156, 163, 175, ${a})`;
         }
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);

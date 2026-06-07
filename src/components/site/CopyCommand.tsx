@@ -26,9 +26,9 @@ export function CopyCommand({
   return (
     <button
       onClick={onCopy}
-      className={`group inline-flex items-center gap-3 rounded-md bg-red-primary px-5 py-3 text-[14px] font-medium text-white shadow-[0_0_0_1px_rgba(229,62,62,0.5),0_12px_32px_-10px_rgba(229,62,62,0.7)] hover:bg-red-glow transition-all pulse-glow ${className}`}
+      className={`group relative inline-flex items-center gap-3 rounded-lg bg-[#1e1e2e] px-5 py-3 text-[14px] font-medium text-white border border-gray-200 hover:border-gray-300 transition-all ${className}`}
     >
-      <span className="font-mono text-text-primary/90">$</span>
+      <span className="font-mono text-white/50">$</span>
       <span className="font-mono">{command}</span>
       <span className="ml-2 flex h-6 w-6 items-center justify-center rounded bg-white/10 group-hover:bg-white/20 transition">
         {copied ? (
@@ -38,7 +38,7 @@ export function CopyCommand({
         )}
       </span>
       {copied && (
-        <span className="absolute -top-9 left-1/2 -translate-x-1/2 rounded bg-bg-elevated border border-white/10 px-2 py-1 text-[11px] text-text-primary">
+        <span className="absolute -top-9 left-1/2 -translate-x-1/2 rounded-md bg-text-primary text-white px-2.5 py-1 text-[11px] shadow-lg">
           Copied!
         </span>
       )}
