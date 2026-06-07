@@ -8,7 +8,6 @@ export function TerminalWindow({
   title?: string;
   children: ReactNode;
   className?: string;
-  glow?: boolean;
 }) {
   return (
     <div

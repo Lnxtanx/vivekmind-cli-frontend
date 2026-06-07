@@ -15,12 +15,28 @@ import { Nav } from "@/components/site/Nav";
 export const Route = createFileRoute("/docs")({
   head: () => ({
     meta: [
-      { title: "Docs — VivekMind CLI" },
+      { title: "Documentation — VivekMind CLI" },
       {
         name: "description",
-        content: "Install, configure, and master VivekMind CLI.",
+        content: "Comprehensive installation guides, configuration profiles, provider setups, and commands documentation for VivekMind CLI.",
       },
+      {
+        property: "og:title",
+        content: "Documentation — VivekMind CLI",
+      },
+      {
+        property: "og:description",
+        content: "Comprehensive installation guides, configuration profiles, provider setups, and commands documentation for VivekMind CLI.",
+      },
+      {
+        property: "og:url",
+        content: "https://code.vivekmind.com/docs",
+      },
+      { property: "og:type", content: "website" },
     ],
+    links: [
+      { rel: "canonical", href: "https://code.vivekmind.com/docs" }
+    ]
   }),
   component: DocsPage,
 });
@@ -259,26 +275,22 @@ function Install() {
   return (
     <section>
       <H2 id="install">Installation</H2>
-      <P>VivekMind CLI requires Node.js 20 or later.</P>
+      <P>VivekMind CLI requires Node.js 20 or later. We provide quick one-line script installers for all major platforms, or you can install manually via npm.</P>
 
-      <H3>macOS</H3>
-      <Block lang="bash">{`brew install node
-npm install -g vivekmind`}</Block>
+      <H3>Quick Installation (macOS / Linux)</H3>
+      <Block lang="bash">{`curl -fsSL https://vivekmind-assets.oss-cn-hangzhou.aliyuncs.com/installation/install_vivekmind.sh | bash`}</Block>
 
-      <H3>Windows</H3>
-      <Block lang="powershell">{`winget install OpenJS.NodeJS.LTS
-npm install -g vivekmind`}</Block>
+      <H3>Quick Installation (Windows)</H3>
+      <Block lang="powershell">{`powershell -Command "Invoke-WebRequest -Uri 'https://vivekmind-assets.oss-cn-hangzhou.aliyuncs.com/installation/install_vivekmind.bat' -OutFile 'install.bat'; .\\install.bat"`}</Block>
 
-      <H3>Linux (Ubuntu/Debian)</H3>
-      <Block lang="bash">{`curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
-sudo apt-get install -y nodejs
-npm install -g vivekmind`}</Block>
+      <H3>Manual Installation (npm)</H3>
+      <Block lang="bash">{`npm install -g vivekmind`}</Block>
 
-      <H3>Verify</H3>
-      <Block lang="bash">{`vivekmind --version`}</Block>
+      <H3>Verify Installation</H3>
+      <Block lang="bash">{`vivekmind --help`}</Block>
 
       <Callout kind="tip" title="Permission errors?">
-        Use <Code>npm config set prefix ~/.npm-global</Code> and add <Code>~/.npm-global/bin</Code> to your PATH.
+        If you run into permission errors during npm installation, run <Code>npm config set prefix ~/.npm-global</Code> and add <Code>~/.npm-global/bin</Code> to your PATH.
       </Callout>
     </section>
   );

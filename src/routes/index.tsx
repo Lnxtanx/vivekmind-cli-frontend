@@ -1,21 +1,9 @@
-import { Fragment, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import {
-  ArrowRight,
-  Github,
-  Unlock,
-  KeyRound,
-  Cloud,
-  Plug,
   Puzzle,
-  Bot,
   Check,
   X,
-  Wrench,
-  TerminalSquare,
-  Brain,
-  Cpu,
-  MessageSquare,
   Layers,
   Boxes,
   Network,
@@ -30,7 +18,6 @@ import {
   Clock,
   FileCode,
   Copy,
-  Send,
 } from "lucide-react";
 import { Nav } from "@/components/site/Nav";
 import { HeroTerminal } from "@/components/site/HeroTerminal";
@@ -41,23 +28,31 @@ import logo from "@/assets/vivekmind-logo.png";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "VivekMind CLI — Open-source terminal AI coding agent" },
+      { title: "VivekMind CLI — AWS-Native Terminal AI Coding Agent" },
       {
         name: "description",
         content:
-          "Open-source terminal AI agent with 20+ provider support, 40+ commands, AWS Bedrock integration, and MCP support.",
+          "Open-source terminal AI coding assistant native to AWS Bedrock. Run Claude, Gemini, OpenAI, DeepSeek, and Grok in your terminal securely. BYOK — bring your own keys.",
       },
       {
         property: "og:title",
-        content: "VivekMind CLI — The open source AI coding agent",
+        content: "VivekMind CLI — AWS-Native Terminal AI Coding Agent",
       },
       {
         property: "og:description",
         content:
-          "Open-source terminal AI coding agent with 20+ providers and full AWS Bedrock support.",
+          "Open-source terminal AI coding assistant native to AWS Bedrock. Run Claude, Gemini, OpenAI, DeepSeek, and Grok in your terminal securely.",
       },
+      { property: "og:url", content: "https://code.vivekmind.com/" },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "VivekMind" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "VivekMind CLI — AWS-Native Terminal AI Coding Agent" },
+      { name: "twitter:description", content: "Open-source terminal AI coding assistant native to AWS Bedrock. Multi-model support with BYOK." },
     ],
+    links: [
+      { rel: "canonical", href: "https://code.vivekmind.com/" }
+    ]
   }),
   component: Landing,
 });
@@ -166,9 +161,7 @@ function CopyBtn({ text }: { text: string }) {
   );
 }
 
-function Line({ children, c }: { children: React.ReactNode; c?: string }) {
-  return <div className={c}>{children}</div>;
-}
+
 
 /* ── page ── */
 
@@ -179,11 +172,85 @@ function Landing() {
       <Hero />
       <FeaturesSection />
       <ProvidersSection />
-      <TelegramSection />
       <AdvancedGrid />
+      <PackagesSection />
       <ComparisonSection />
       <Footer />
+
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            "name": "VivekMind CLI",
+            "description": "Open-source AWS-native terminal AI coding assistant. Connect Claude, GPT, Gemini, DeepSeek, and 20+ providers with your own API keys.",
+            "operatingSystem": "Windows, macOS, Linux",
+            "applicationCategory": "DeveloperApplication",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            },
+            "downloadUrl": "https://github.com/Lnxtanx/vivekmind-cli",
+            "installUrl": "https://www.npmjs.com/package/vivekmind",
+            "softwareVersion": "1.0.0",
+            "license": "https://opensource.org/licenses/Apache-2.0",
+            "programmingLanguage": "TypeScript",
+            "author": {
+              "@type": "Organization",
+              "name": "VivekMind",
+              "url": "https://vivekmind.com"
+            },
+            "sameAs": [
+              "https://github.com/Lnxtanx/vivekmind-cli",
+              "https://www.npmjs.com/package/vivekmind"
+            ]
+          }),
+        }}
+      />
     </div>
+  );
+}
+
+/* ═══════════════════════ PACKAGES ═══════════════════════ */
+
+function PackagesSection() {
+  const packagesList = [
+    { name: "vivekmind", desc: "CLI entrypoint, TUI display, interactive settings, and command handlers" },
+    { name: "@vivekmind/core", desc: "Core agentic engine, LLM client connections, permissions manager, loop detection, and telemetry" },
+    { name: "@vivekmind/web-templates", desc: "Frontend UI templates for HTML outputs, chat history exports, and interactive developer insights" },
+    { name: "@vivekmind/channel-base", desc: "Standard interfaces, types, and bridge connections for daemon-based chat channels" },
+    { name: "@vivekmind/channel-telegram", desc: "Telegram adapter leveraging Grammy and markdown formatters for real-time status updates" },
+    { name: "@vivekmind/channel-weixin", desc: "WeChat adapter enabling secure login and messaging integrations" },
+    { name: "@vivekmind/channel-dingtalk", desc: "DingTalk adapter supporting stream connections and business workflow hooks" },
+  ];
+
+  return (
+    <section id="packages" className="py-20 border-t border-neutral-200 bg-neutral-50">
+      <div className="mx-auto max-w-5xl px-6">
+        <Reveal>
+          <p className="text-[12px] font-semibold uppercase tracking-[0.15em] text-red-600">Architecture</p>
+          <h2 className="mt-3 font-display text-[28px] sm:text-[36px] font-bold tracking-tight text-neutral-900">
+            Modular Package Ecosystem
+          </h2>
+          <p className="mt-4 max-w-xl text-[15px] text-neutral-500 leading-relaxed">
+            VivekMind CLI is structured as a monorepo workspace to separate core execution, TUI displays, and channel integrations.
+          </p>
+        </Reveal>
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {packagesList.map(({ name, desc }) => (
+            <Reveal key={name}>
+              <div className="rounded-lg border border-neutral-200 bg-white p-5 hover:border-red-300 transition duration-200">
+                <span className="font-mono text-[13px] font-bold text-red-600">{name}</span>
+                <p className="mt-2 text-[12.5px] text-neutral-500 leading-relaxed">{desc}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -192,9 +259,9 @@ function Landing() {
 function Hero() {
   const os = useOS();
   const installCmds = {
-    windows: "npm install -g vivekmind",
-    mac: "npm install -g vivekmind",
-    linux: "npm install -g vivekmind",
+    windows: "npm i -g vivekmind",
+    mac: "npm i -g vivekmind",
+    linux: "npm i -g vivekmind",
   };
   const osLabels = { windows: "Windows", mac: "macOS", linux: "Linux" };
 
@@ -368,111 +435,7 @@ function ProvidersSection() {
   );
 }
 
-/* ═══════════════════════ TELEGRAM ═══════════════════════ */
 
-function TelegramSection() {
-  return (
-    <section id="telegram" className="py-20 border-t border-neutral-200 bg-gradient-to-b from-blue-50/50 to-white">
-      <div className="mx-auto max-w-5xl px-6">
-        <div className="grid gap-12 lg:grid-cols-2 items-center">
-          <div>
-            <Reveal>
-              <div className="inline-flex items-center gap-2 rounded-full bg-[#0088cc]/10 px-3 py-1 text-[12px] font-semibold text-[#0088cc] mb-4">
-                <Send className="h-3.5 w-3.5" />
-                Telegram Bot
-              </div>
-            </Reveal>
-            <Reveal delay={0.06}>
-              <h2 className="font-display text-[28px] sm:text-[36px] font-bold tracking-tight text-neutral-900">
-                Bring AI to your Telegram
-              </h2>
-            </Reveal>
-            <Reveal delay={0.12}>
-              <p className="mt-4 max-w-md text-[15px] text-neutral-500 leading-relaxed">
-                Connect VivekMind to Telegram and interact with AI directly from your chats. 
-                Perfect for teams, communities, or personal productivity.
-              </p>
-            </Reveal>
-            <Reveal delay={0.18}>
-              <ul className="mt-6 space-y-3">
-                {[
-                  "Chat with AI in groups or private messages",
-                  "Share context across team members",
-                  "Use any model from any provider",
-                  "Full tool access: read files, run commands, search web",
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-[14px] text-neutral-600">
-                    <Check className="h-4 w-4 text-[#0088cc] shrink-0 mt-0.5" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-            <Reveal delay={0.24}>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <a
-                  href="https://t.me/vivekmind_bot"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-lg bg-[#0088cc] px-5 py-2.5 text-[14px] font-semibold text-white hover:bg-[#0077b5] transition shadow-sm"
-                >
-                  <Send className="h-4 w-4" />
-                  Open in Telegram
-                </a>
-                <a
-                  href="/docs#telegram"
-                  className="inline-flex items-center gap-2 rounded-lg border border-neutral-300 px-5 py-2.5 text-[14px] font-medium text-neutral-700 hover:bg-neutral-100 transition"
-                >
-                  View Documentation
-                </a>
-              </div>
-            </Reveal>
-          </div>
-          <Reveal delay={0.12}>
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-100 to-blue-50 rounded-2xl transform rotate-1" />
-              <div className="relative bg-white rounded-2xl shadow-xl border border-neutral-200 overflow-hidden">
-                <div className="bg-[#0088cc] px-4 py-3 flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-full bg-white/20 flex items-center justify-center">
-                    <Bot className="h-5 w-5 text-white" />
-                  </div>
-                  <div>
-                    <div className="text-white font-semibold text-[14px]">VivekMind Bot</div>
-                    <div className="text-white/70 text-[12px]">Online</div>
-                  </div>
-                </div>
-                <div className="p-4 space-y-3 bg-neutral-50">
-                  <div className="flex justify-end">
-                    <div className="bg-[#0088cc] text-white px-4 py-2 rounded-2xl rounded-br-sm text-[13px] max-w-[80%]">
-                      Analyze the performance of this database query
-                    </div>
-                  </div>
-                  <div className="flex justify-start">
-                    <div className="bg-white border border-neutral-200 px-4 py-2 rounded-2xl rounded-bl-sm text-[13px] max-w-[80%] text-neutral-700">
-                      I've analyzed the query. The main bottleneck is a missing index on the <code className="bg-neutral-100 px-1 rounded text-red-600">user_id</code> column. Adding an index would improve performance by ~85%.
-                    </div>
-                  </div>
-                  <div className="flex justify-end">
-                    <div className="bg-[#0088cc] text-white px-4 py-2 rounded-2xl rounded-br-sm text-[13px] max-w-[80%]">
-                      Show me the optimized query
-                    </div>
-                  </div>
-                  <div className="flex justify-start">
-                    <div className="bg-white border border-neutral-200 px-4 py-3 rounded-2xl rounded-bl-sm text-[13px] max-w-[80%]">
-                      <code className="block bg-neutral-900 text-green-400 px-3 py-2 rounded-lg text-[12px] font-mono">
-                        CREATE INDEX idx_user_id ON orders(user_id);
-                      </code>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </div>
-    </section>
-  );
-}
 
 /* ═══════════════════════ ADVANCED ═══════════════════════ */
 

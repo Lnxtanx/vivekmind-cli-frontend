@@ -7,6 +7,7 @@ const links: { label: string; href: string; route?: boolean }[] = [
   { label: "Docs", href: "/docs", route: true },
   { label: "Features", href: "/#features" },
   { label: "Providers", href: "/#providers" },
+  { label: "Packages", href: "/#packages" },
 ];
 
 export function Nav() {
