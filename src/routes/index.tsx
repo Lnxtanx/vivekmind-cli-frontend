@@ -210,6 +210,33 @@ function Landing() {
           }),
         }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Is VivekMind CLI secure?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. VivekMind CLI features permissions-based execution prompting the user for approval before editing files, running shell commands, or utilizing tools."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Does VivekMind support AWS Bedrock?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, VivekMind CLI is native to AWS Bedrock. You can connect securely using your existing AWS IAM credentials."
+                }
+              }
+            ]
+          }),
+        }}
+      />
     </div>
   );
 }

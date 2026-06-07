@@ -32,7 +32,11 @@ export const Route = createFileRoute("/docs")({
         property: "og:url",
         content: "https://code.vivekmind.com/docs",
       },
-      { property: "og:type", content: "website" },
+      { property: "og:type", content: "article" },
+      { property: "og:site_name", content: "VivekMind" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Documentation — VivekMind CLI" },
+      { name: "twitter:description", content: "Installation guides, configuration, provider setup, and slash commands for VivekMind CLI." },
     ],
     links: [
       { rel: "canonical", href: "https://code.vivekmind.com/docs" }
@@ -119,6 +123,48 @@ function DocsPage() {
           </main>
         </div>
       </div>
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://code.vivekmind.com/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Documentation",
+                "item": "https://code.vivekmind.com/docs"
+              }
+            ]
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "TechArticle",
+            "headline": "Documentation — VivekMind CLI",
+            "description": "Comprehensive installation guides, configuration profiles, provider setups, and commands documentation for VivekMind CLI.",
+            "inLanguage": "en",
+            "mainEntityOfPage": "https://code.vivekmind.com/docs",
+            "publisher": {
+              "@type": "Organization",
+              "name": "VivekMind",
+              "url": "https://vivekmind.com"
+            }
+          }),
+        }}
+      />
     </div>
   );
 }
